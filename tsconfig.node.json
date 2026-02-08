@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    /* ===============================
+       Modern Target & Runtime
+    =============================== */
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+
+    /* ===============================
+       Bundler / Vite Mode
+    =============================== */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* ===============================
+       Type Safety
+    =============================== */
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+
+    /* ===============================
+       Code Quality
+    =============================== */
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+
+    /* ===============================
+       Performance
+    =============================== */
+    "skipLibCheck": true,
+
+    /* ===============================
+       Node / Vite Compatibility
+    =============================== */
+    "types": ["node"]
+  },
+
+  "include": ["vite.config.ts"]
+}
