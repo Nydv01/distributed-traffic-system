@@ -704,10 +704,16 @@ export function ThreeDTrafficFlow() {
     const routeNodeIds = useMemo(() => routeResult?.pathIds || [], [routeResult])
 
     return (
-        <div className={cn(
-            'w-full h-full rounded-2xl overflow-hidden border relative',
-            theme === 'dark' ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-200'
-        )}>
+        <div
+            className={cn(
+                'w-full h-full rounded-2xl overflow-hidden border relative touch-none',
+                theme === 'dark' ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-200'
+            )}
+            onWheel={(e) => {
+                // If the user is zooming the map, stop the page from scrolling
+                e.stopPropagation();
+            }}
+        >
             {/* Header */}
             <div className="absolute top-6 left-6 z-10">
                 <div className={cn(
