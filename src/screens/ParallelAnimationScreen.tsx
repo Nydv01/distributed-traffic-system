@@ -373,6 +373,7 @@ export function ParallelAnimationScreen() {
   }, [isRunning, startTime])
 
   const [userHasInteracted, setUserHasInteracted] = useState(false)
+  const hasNavigated = useRef(false)
 
   // If user scrolls, disable auto-navigation
   useEffect(() => {
