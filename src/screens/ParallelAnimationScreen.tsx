@@ -372,15 +372,27 @@ export function ParallelAnimationScreen() {
     return () => clearInterval(i)
   }, [isRunning, startTime])
 
-  const hasNavigated = useRef(false)
+  const [userHasInteracted, setUserHasInteracted] = useState(false)
+
+  // If user scrolls, disable auto-navigation
+  useEffect(() => {
+    if (isUserScrolling) {
+      setUserHasInteracted(true)
+    }
+  }, [isUserScrolling])
 
   useEffect(() => {
-    if (phase === 'complete' && metrics && !hasNavigated.current && !isUserScrolling) {
+    // Only auto-navigate if:
+    // 1. Simulation is complete
+    // 2. Metrics exist
+    // 3. We haven't navigated yet
+    // 4. User hasn't interacted (scrolled)
+    if (phase === 'complete' && metrics && !hasNavigated.current && !userHasInteracted) {
       hasNavigated.current = true
-      const timer = setTimeout(() => navigate('/output'), 800)
+      const timer = setTimeout(() => navigate('/output'), 2000) // Increased to 2s to give them a chance to see it finishes
       return () => clearTimeout(timer)
     }
-  }, [phase, metrics, navigate, isUserScrolling])
+  }, [phase, metrics, navigate, userHasInteracted])
 
   const handleNodeClick = (regionId: string) => {
     setSelectedNodeId(regionId as RegionId)
